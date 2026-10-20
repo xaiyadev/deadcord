@@ -1,0 +1,22 @@
+// command that returns a ping to a command
+// TODO
+
+package commands
+
+import (
+	"github.com/bwmarrin/discordgo"
+	"xaiyadev/deadcord/m/internal/commands"
+)
+
+var Ping = &Command{
+        Definition: &discordgo.ApplicationCommand{
+                Name:        "ping",
+                Description: "Replies with pong",
+        },
+        Handler: func(s *discordgo.Session, i *discordgo.InteractionCreate) {
+                s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse {
+                        Type: discordgo.InteractionResponseChannelMessageWithSource,
+                        Data: &discordgo.InteractionResponseData{ Content: "pong" }, // return pong ! <3
+                })
+        },
+}
